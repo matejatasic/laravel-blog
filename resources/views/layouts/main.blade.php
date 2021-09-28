@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
+        <!-- navbar -->
         <nav class="navbar bg-dark">
             <a href="#" class="navbar-brand">
                 Laravel Blog
@@ -25,7 +26,7 @@
                     <a href="#">About</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">Services</a>
                 </li>
             </ul>
             <ul class="right-nav">
@@ -33,8 +34,8 @@
                 <li><a href="#">Register</a></li>
             </ul>
         </nav>
-        <div class="container">
-            @yield('content')
-        </div>
+        <!-- !navbar -->
+
+        @yield('content')
     </body>
 </html>
