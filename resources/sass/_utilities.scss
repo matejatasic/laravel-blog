@@ -1,0 +1,17 @@
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+}
+
+// Text styles
+.lead {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+// Backgrounds
+.bg-dark {
+    background-color: $black-color;
+}
