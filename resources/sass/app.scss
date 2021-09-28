@@ -1,8 +1,24 @@
 @import 'config';
 @import 'utilities';
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    font-family: 'Lato';
+    top: 0;
+    border-bottom: solid 1px $primary-color;
+    padding: 0.7rem 2rem;
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        color: $light-color;
+        text-decoration: none;
+    }
 }
