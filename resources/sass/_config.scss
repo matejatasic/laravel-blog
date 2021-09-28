@@ -1,0 +1,41 @@
+// Color variables
+$primary-color: rgb(36, 167, 211);
+$black-color: rgb(58, 51, 51);
+$light-color: rgb(224, 217, 217);
+$danger-color: rgb(204, 55, 55);
+$success-color: rgb(28, 180, 28);
+
+// Margin & padding
+$space-amount: (1,2,3,4,5);
+
+@each $space in $space-amount {
+    // All sides margin
+    .m-#{$space} {
+        margin: #{$space}rem;
+    }
+    
+    // Vertical margin
+    .my-#{$space} {
+        margin: #{$space}rem 0;
+    }
+    
+    // Horizontal margin
+    .mx-#{$space} {
+        margin: 0 #{$space}rem;
+    }
+    
+    // All sides padding
+    .p-#{$space} {
+        padding: #{$space}rem;
+    }
+    
+    // Vertical padding
+    .py-#{$space} {
+        padding: #{$space}rem 0;
+    }
+    
+    // Horizontal padding
+    .px-#{$space} {
+        padding: 0 #{$space}rem;
+    }
+}
