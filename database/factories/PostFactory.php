@@ -25,6 +25,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(5),
             'body' => $this->faker->realText(500),
             'user_id' => $this->faker->randomDigit,
+            'img_path' => '/img/post_images/post_image.jpg',
         ];
     }
 }
