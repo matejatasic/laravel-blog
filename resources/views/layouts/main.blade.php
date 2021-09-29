@@ -12,21 +12,21 @@
     <body>
         <!-- navbar -->
         <nav class="navbar bg-dark">
-            <a href="#" class="navbar-brand">
+            <a href="{{ route('pages.home') }}" class="navbar-brand">
                 Laravel Blog
             </a>
             <ul class="left-nav">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="{{ route('pages.home') }}">Home</a>
                 </li>
                 <li>
-                    <a href="#">Posts</a>
+                    <a href="#">Blog</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="{{ route('pages.about') }}">About</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="{{ route('pages.contact') }}">Contact</a>
                 </li>
             </ul>
             <ul class="right-nav">
