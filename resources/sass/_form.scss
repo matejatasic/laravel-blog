@@ -1,0 +1,23 @@
+.form {
+    width: 100%;
+
+    &-group {
+        margin: 1.2rem 0;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    textarea {
+        display: block;
+        border: 2px solid $black-color;
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    input[type='submit'] {
+        font: 'Oswald';
+        margin: 0 auto;
+    }
+}
