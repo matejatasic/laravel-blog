@@ -65,12 +65,12 @@ body {
 
 .background-image {
     position: relative;
-    width: 100%;
+    background-image: url('/img/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     height: 600px;
-
-    img {
-        width: 100%;
-    }
 
     .block-text {
         position: absolute;
@@ -87,4 +87,26 @@ body {
         }  
     }
 
+}
+
+// About
+.about-background {
+    height: 500px;
+    background-size: cover;
+	background-color: #1c120c;
+	background-attachment:fixed;
+	position:relative;
+	overflow:hidden;
+
+    &-1 {
+        background: url('/img/about-background-1.jpg') no-repeat center fixed;
+    }
+
+    &-2 {
+        background: url('/img/about-background-2.jpg') no-repeat center fixed;
+    }
+}
+
+.blog-post {
+    display: inline-grid;
 }
