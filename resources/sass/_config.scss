@@ -23,6 +23,11 @@ $space-amount: (1,2,3,4,5);
     .mx-#{$space} {
         margin: 0 #{$space}rem;
     }
+
+    // Bottom margin
+    .mb-#{$space} {
+        margin-bottom: #{$space}rem;
+    }
     
     // All sides padding
     .p-#{$space} {
