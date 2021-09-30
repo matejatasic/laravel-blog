@@ -1,73 +1,121 @@
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 2rem;
-    margin-top: 6rem;
+@import 'config';
+@import 'utilities';
+@import 'form';
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-// Text styles
-.lead {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.large {
-    font-size: 2.5rem;
-    line-height: 1.2;
-}
-
-.medium {
-    font-size: 2rem;
-}
-
-.text-center {
-    text-align: center;
-}
-
-// Backgrounds
-.bg-dark {
-    background-color: $black-color;
-}
-
-// Buttons
-.btn {
-    display: block;
-    background: $light-color;
-    width: 100px;
+body {
+    font: 'Oswald', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    background: #fff;
     color: #333;
-    padding: 0.6rem 1.3rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    outline: none;
-    transition: all 0.2s ease-in;
-    text-decoration: none;
-    font-family: 'Oswald';
+}
 
-    &.btn-primary {
-        background: $primary-color;
-        &:hover {
-            background: lighten($primary-color, 5%);
+.navbar {
+    width: 100%;
+    position: fixed;
+    font-family: 'Lato';
+    top: 0;
+    border-bottom: solid 1px $primary-color;
+    padding: 0.7rem 2rem;
+    display: flex;
+    z-index: 1;
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        color: $light-color;
+        text-decoration: none;
+    }
+
+    ul {
+        display: flex;
+
+        li {
+            list-style: none;
+            margin: auto 0.5rem;
+
+            a {
+                color: $light-color;
+                text-decoration: none;
+
+                &:hover {
+                    color: darken($light-color, 20%);
+                } 
+            }
         }
     }
-    &.btn-black {
-        background: $black-color;
-        &:hover {
-            background: lighten($black-color, 5%);
-        }
+
+    ul.left-nav {
+        margin-left: 1rem;
+        justify-content: left;
+        width: 30%;
     }
-    &.btn-success {
-        background: $success-color;
-        &:hover {
-            background: lighten($success-color, 5%);
-        }
+
+    ul.right-nav {
+        justify-content: right;
+        width: 57%;
     }
-    &.btn-danger {
-        background: $danger-color;
-        &:hover {
-            background: lighten($danger-color, 5%);
-        }
+}
+
+.background-image {
+    position: relative;
+    background-image: url('/img/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 600px;
+
+    .block-text {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        color: darken($primary-color, 15%);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .heading {
+            font-size: 5rem;   
+        }  
+    }
+
+}
+
+// About
+.about-background {
+    height: 500px;
+    background-size: cover;
+	background-color: #1c120c;
+	background-attachment:fixed;
+	position:relative;
+	overflow:hidden;
+
+    &-1 {
+        background: url('/img/about-background-1.jpg') no-repeat center fixed;
+    }
+
+    &-2 {
+        background: url('/img/about-background-2.jpg') no-repeat center fixed;
+    }
+}
+
+.blog-post {
+    display: flex;
+
+    div img {
+        height: 15rem;
+    }
+
+    div a {
+        width: 105px;
     }
 }
