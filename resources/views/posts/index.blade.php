@@ -23,5 +23,6 @@
                 </div>
             @endforeach
         </div>
+        {{ $posts->links('vendor.custom') }}
     </div>
 @endsection
