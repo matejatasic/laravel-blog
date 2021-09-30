@@ -20,7 +20,7 @@
                     <a href="{{ route('pages.home') }}">Home</a>
                 </li>
                 <li>
-                    <a href="#">Blog</a>
+                    <a href="{{ route('posts.index') }}">Blog</a>
                 </li>
                 <li>
                     <a href="{{ route('pages.about') }}">About</a>
