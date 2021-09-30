@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
 
         return view('posts.index', [
             'posts' => $posts,
@@ -50,7 +50,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        $user = $post->user;
+        
+        return view('posts.show', [
+            'post' => $post,
+            'user' => $user,
+        ]);
     }
 
     /**
