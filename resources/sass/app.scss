@@ -108,6 +108,7 @@ body {
     }
 }
 
+// Blog
 .blog-post {
     display: flex;
 
@@ -117,5 +118,51 @@ body {
 
     div a {
         width: 105px;
+    }
+}
+
+.post-image {
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Pagination
+.pagination {
+    display: flex;
+    flex-direction: row;
+    margin-left: 35%;
+
+    .page-item {
+        list-style: none;
+        border: 1px solid black;
+        border-left: none;
+        padding: 0.5rem;
+        width: 2rem;
+        text-align: center;
+        font-family: 'Oswald';
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .page-item:first-child {
+        border-left: 1px solid black;
+    }
+
+    .disabled {
+        pointer-events: none;
+        cursor: default;
+        color: black;
+    }
+
+    .active {
+        pointer-events: none;
+        cursor: default;
+        color: $danger-color;
     }
 }
