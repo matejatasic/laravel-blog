@@ -7,6 +7,11 @@
         </div>
         <hr>
         <div class="my-3">
+            @if (Auth::check())
+                <div>
+                    <a href="{{ route('posts.create') }}" class="btn btn-success create mb-3">Create</a>
+                </div>
+            @endif
             @foreach ($posts as $post)
                 <div class="blog-post mb-4">
                     <div>
@@ -14,7 +19,7 @@
                     </div>
                     <div class="px-3">
                         <h2 class="medium">{{ $post->title > 20 ? substr($post->title, 0, 20) . '...' : $post->title }}</h2>
-                        <p class="mb-2">By <b>Some Author</b>, {{ $post->created_at->diffForHumans() }}</p>
+                        <p class="mb-2">By <b>{{ $post->user->name }}</b>, {{ $post->created_at->diffForHumans() }}</p>
                         <p class="lead">
                             {{ strlen($post->body) > 150 ? substr($post->body, 0, 150) . '...' : $post->body }}
                         </p>
