@@ -19,6 +19,7 @@
 
 .medium {
     font-size: 2rem;
+    line-height: 1.2;
 }
 
 .text-center {
@@ -30,20 +31,24 @@
     background-color: $black-color;
 }
 
+.bg-primary {
+    background-color: $primary-color;   
+}
+
 // Buttons
 .btn {
     display: block;
     background: $light-color;
-    width: 100px;
     color: #333;
-    padding: 0.6rem 1.3rem;
+    padding: 0.4rem 1.3rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
     outline: none;
     transition: all 0.2s ease-in;
     text-decoration: none;
+    text-align: center;
     font-family: 'Oswald';
 
     &.btn-primary {
@@ -69,5 +74,29 @@
         &:hover {
             background: lighten($danger-color, 5%);
         }
+    }
+}
+
+// Alerts
+.alert {
+    padding: 1.2rem 2rem;
+    margin: 1rem;
+    opacity: 0.9;
+    background: $light-color;
+    color: #333;
+
+    &.alert-primary {
+        background: $primary-color;
+    }
+    &.alert-success {
+        background: $success-color;
+    }
+    &.alert-danger {
+        background: lighten($danger-color, 20%);
+    }
+
+    ul li {
+        font-family: 'Oswald';
+        margin-bottom: 0.5rem;
     }
 }
