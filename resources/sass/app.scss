@@ -30,6 +30,7 @@ body {
 
     .navbar-brand {
         font-size: 1.5rem;
+        margin: auto;
         color: $light-color;
         text-decoration: none;
     }
@@ -62,17 +63,50 @@ body {
         justify-content: right;
         width: 57%;
 
-        .user-name {
-            margin-top: 0.4rem;
-            margin-left: 88%;
+        .username-div {
+            position: relative;
+            margin-top: auto;
+            margin-left: 80%;
+            display: flex;
 
-            &:hover > * {
+            #avatar {
+                height: 45px;
+                width: 45px;
+                border-radius: 50%;
+                margin: auto 0;
+            }
+
+            #username {
+                display: inline-block;
+                background: $black-color;
+                margin: auto 0.3rem;
+            }
+
+            #username:hover, #username:hover > * {
                 color: lighten($light-color, 20%);
+                cursor: pointer;
             }
 
             a, i {
                 text-decoration: none;
                 color: $light-color;
+            }
+
+            #dropdown {
+                display: none;
+                position: absolute;
+                width: 100%;
+                background: lighten($black-color, 5%);
+                text-align: center;
+
+                div {
+                    padding: 0.2rem;
+                }
+
+                div:hover {
+                    cursor: pointer;
+                    background: lighten($black-color, 10%);
+                }
             }
         }
     }
@@ -142,6 +176,11 @@ body {
         width: 100%;
         height: auto;
     }
+}
+
+.create {
+    width: 10%;
+    margin-left: 90%;
 }
 
 // Pagination
