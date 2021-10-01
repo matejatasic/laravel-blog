@@ -52,15 +52,29 @@ body {
         }
     }
 
-    ul.left-nav {
+    .left-nav {
         margin-left: 1rem;
         justify-content: left;
         width: 30%;
     }
 
-    ul.right-nav {
+    .right-nav {
         justify-content: right;
         width: 57%;
+
+        .user-name {
+            margin-top: 0.4rem;
+            margin-left: 88%;
+
+            &:hover > * {
+                color: lighten($light-color, 20%);
+            }
+
+            a, i {
+                text-decoration: none;
+                color: $light-color;
+            }
+        }
     }
 }
 
