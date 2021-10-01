@@ -37,8 +37,18 @@
             </ul>
             @if (Auth::check())
                 <div class="right-nav">
-                    <div class="user-name">
-                        <a href="#">{{ auth()->user()->name }}</a> <i class="fas fa-caret-down"></i>
+                    <div class="username-div">
+                        <img src="{{ auth()->user()->img_path }}" alt="avatar" id="avatar">
+                        <a id="username">{{ auth()->user()->name }} <i class="fas fa-caret-down"></i></a>
+                        <div id="dropdown">
+                            <div>
+                                <a href="#">Settings</a>
+                            </div>
+                            <hr>
+                            <div>
+                                <a href="{{ route('logout') }}">Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @else
@@ -51,5 +61,54 @@
         <!-- !navbar -->
 
         @yield('content')
+
+        @if (Auth::check())
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            <script>
+                let username = $('#username');
+                let avatar = $('#avatar');
+                let dropdown = $('#dropdown'); 
+                let isActive = false;
+
+                function toggleDropdown() {
+                    if(!isActive) {
+                        dropdown.css('display', 'block');
+                        isActive = true;
+                    }
+                    else {
+                        dropdown.css('display', 'none');
+                        isActive = false;
+                    }
+                }
+
+                function onEnterChange() {
+                    avatar.css('cursor', 'pointer');
+                    username.css({
+                        'cursor': 'pointer',
+                        'color': 'white'
+                    });
+                }
+                
+                function onOutChange() {
+                    avatar.css('cursor', 'default');
+                    username.css({
+                        'color': '#e0d9d9'
+                    });
+                }
+
+                // On button click show or hide dropdown
+                username.on('click', toggleDropdown)
+                avatar.hover(onEnterChange, onOutChange);
+                avatar.on('click', toggleDropdown);
+
+                // Hide dropdown if click is outside of button
+                $(window).click((e) => {
+                    if(isActive && !e.target.matches('#username') && !e.target.matches('#avatar')) {
+                        dropdown.css('display', 'none');
+                        isActive = false;   
+                    }
+                }); 
+            </script>
+        @endif
     </body>
 </html>
