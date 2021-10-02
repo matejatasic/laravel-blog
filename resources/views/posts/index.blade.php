@@ -7,6 +7,11 @@
         </div>
         <hr>
         <div class="my-3">
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             @if (Auth::check())
                 <div>
                     <a href="{{ route('posts.create') }}" class="btn btn-success create mb-3">Create</a>
