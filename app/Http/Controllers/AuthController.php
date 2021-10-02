@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Session;
 
 class AuthController extends Controller
 {
@@ -31,7 +30,6 @@ class AuthController extends Controller
 
     public function postRegister(Request $request) {
         $image_name;
-
         if($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
             $this->validate($request, [
                 'name' => 'required|',
@@ -40,7 +38,7 @@ class AuthController extends Controller
                 'img_path' => 'mimes:jpeg,png|max:1024',
             ]);
 
-            $image_name = time() . 'user_image.' . $request->img_path->extension();
+            $image_name = '/img/user_images/' . time() . 'user_image.' . $request->img_path->extension();
         }
         else {
             $this->validate($request, [
@@ -49,7 +47,7 @@ class AuthController extends Controller
                 'password' => 'required|min:8|confirmed',
             ]);
 
-            $image_name = '/img/user_images/default_image.jpg';
+            $image_path = '/img/user_images/default_image.jpg';
         }
 
         $user = new User;
@@ -59,7 +57,7 @@ class AuthController extends Controller
         $user->img_path = $image_name;
         $user->save();
         
-        $request->image->move(public_path('img/user_images'), $image_name);
+        $request->img_path->move(public_path('img/user_images'), $image_name);
 
         return redirect()->route('posts.index');
     }
