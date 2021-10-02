@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File; 
 use App\Models\Post;
 use Session;
 
@@ -47,7 +48,7 @@ class PostController extends Controller
             'img_path' => 'required|mimes:jpeg,png|max:1024'
         ]);
 
-        $image_name = 'img/post_images/' . time() . 'post_image.' . $request->img_path->extension();
+        $image_name = '/img/post_images/' . time() . 'post_image.' . $request->img_path->extension();
 
         $post = new Post;
 
@@ -73,11 +74,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $user = $post->user;
-        
         return view('posts.show', [
             'post' => $post,
-            'user' => $user,
         ]);
     }
 
@@ -89,7 +87,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -101,7 +102,40 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $image_name;
+        $old_image;
+
+        if($request->img_path->isValid()) {
+            $this->validate($request, [
+                'title' => 'required|max:20',
+                'body' => 'required',
+                'img_path' => 'mimes:jpeg,png|max:1024'
+            ]);
+
+            $old_image = $post->img_path;
+            $image_name = '/img/post_images/' . time() . 'post_image.' . $request->img_path->extension();
+            $request->img_path->move(public_path('img/post_images'), $image_name);
+
+            File::delete(public_path($old_image));
+        }
+        else {
+            $this->validate($request, [
+                'title' => 'required|max:20',
+                'body' => 'required',
+            ]);
+
+            $image_name = $post->img_path;
+        }
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->img_path = $image_name;
+        $post->save();
+
+        Session::flash('success', 'Successfully updated the post!');
+
+        return redirect()->route('posts.index');
     }
 
     /**
