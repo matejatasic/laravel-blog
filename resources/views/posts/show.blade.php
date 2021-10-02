@@ -7,7 +7,13 @@
         </div>
         <hr>
         <div class="my-3">
-            <p class="lead">By <b>{{ $user->name }}</b>, {{ date( 'F j, Y', strtotime($post->created_at)) }}</p>
+            @if ($post->user_id === auth()->user()->id)
+                <div class="user-auth-btns mb-2">
+                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary mb-1">Edit</a>
+                    <a href="{{ route('posts.destroy', $post->id) }}" class="btn btn-danger">Delete</a>
+                </div>
+            @endif
+            <p class="lead">By <b>{{ $post->user->name }}</b>, {{ date( 'F j, Y', strtotime($post->created_at)) }}</p>
             <div class="post-image my-3">
                 <img src="{{ $post->img_path }}" alt="post_image">
             </div>
@@ -17,4 +23,3 @@
         </div>
     </div>
 @endsection
-
