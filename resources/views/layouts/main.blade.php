@@ -85,7 +85,7 @@
                     avatar.css('cursor', 'pointer');
                     username.css({
                         'cursor': 'pointer',
-                        'color': 'white'
+                        'color': '#b2a1a1'
                     });
                 }
                 
@@ -98,6 +98,7 @@
 
                 // On button click show or hide dropdown
                 username.on('click', toggleDropdown)
+                username.hover(onEnterChange, onOutChange);
                 avatar.hover(onEnterChange, onOutChange);
                 avatar.on('click', toggleDropdown);
 
