@@ -78,18 +78,9 @@ body {
 
             #username {
                 display: inline-block;
+                color: $light-color;
                 background: $black-color;
                 margin: auto 0.3rem;
-            }
-
-            #username:hover, #username:hover > * {
-                color: lighten($light-color, 20%);
-                cursor: pointer;
-            }
-
-            a, i {
-                text-decoration: none;
-                color: $light-color;
             }
 
             #dropdown {
@@ -162,6 +153,7 @@ body {
 
     div img {
         height: 15rem;
+        width: 25rem;
     }
 
     div a {
