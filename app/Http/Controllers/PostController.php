@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use Session;
 
 class PostController extends Controller
 {
@@ -39,7 +41,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:20',
+            'body' => 'required',
+            'img_path' => 'required|mimes:jpeg,png|max:1024'
+        ]);
+
+        $image_name = 'img/post_images/' . time() . 'post_image.' . $request->img_path->extension();
+
+        $post = new Post;
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->user_id = Auth::id();
+        $post->img_path = $image_name;
+        $post->save();
+
+        $request->img_path->move(public_path('img/post_images'), $image_name);
+
+        Session::flash('success', 'Successfully added the post!');
+
+        return redirect()->route('posts.index');
     }
 
     /**
