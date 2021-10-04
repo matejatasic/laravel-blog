@@ -39,7 +39,7 @@
                 </div>
                 <div>
                     <input type="submit" class="btn btn-success mx-2" value="Register">
-                    <a href="{{ route('login') }}">Already have an account?</a>
+                    <a href="{{ route('postLogin') }}">Already have an account?</a>
                 </div>
             </form>
         </div>
