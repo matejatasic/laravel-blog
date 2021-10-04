@@ -25,6 +25,15 @@
                 <p class="lead">{{ $post->body }}</p>
             </div>
         </div>
+        <hr>
+        <div class="my-2">
+            <h2 class="medium text-center">Comments</h2>
+            @if (Auth::check())
+                <div>
+                    <a href="{{ route('comments.create') }}" class="btn btn-success create mb-3">Create</a>
+                </div>
+            @endif
+        </div>
     </div>
 @endsection
 
