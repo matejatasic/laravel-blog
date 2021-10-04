@@ -23,7 +23,7 @@ class CommentFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(2),
-            'body' => $this->faker->realText(200),
+            'comment' => $this->faker->realText(200),
             'user_id' => $this->faker->randomDigitNot(0),
             'post_id' => $this->faker->numberBetween(1, 30),
         ];
