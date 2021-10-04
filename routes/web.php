@@ -21,6 +21,13 @@ Route::get('/', [PageController::class, 'getHome'])->name('pages.home');
 Route::get('/about', [PageController::class, 'getAbout'])->name('pages.about');
 Route::get('/contact', [PageController::class, 'getContact'])->name('pages.contact');
 
+// Login & Registration
+Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
+Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
+Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
+Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
+Route::get('/logout', [AuthController::class, 'postLogout'])->name('logout');
+
 // Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
@@ -33,9 +40,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
-// Login & Registration
-Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
-Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
-Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
-Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
-Route::get('/logout', [AuthController::class, 'postLogout'])->name('logout');
+//Comments
+Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
