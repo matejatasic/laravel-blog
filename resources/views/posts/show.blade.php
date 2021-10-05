@@ -62,6 +62,9 @@
                                                 <input type="submit" id="dislike-btn" value="Unlike">
                                             </form>
                                         @endif
+                                        @if (auth()->user()->id === $comment->user->id)
+                                            <a href="{{ route('comments.edit', $comment->id) }}" id="edit-btn">Edit</a>
+                                        @endif
                                     </div>
                                 @endif 
                             </div>  
