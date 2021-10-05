@@ -5,7 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostLikeController;
+use App\Http\Controllers\CommentLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,5 +44,5 @@ Route::group(['middleware' => 'auth'], function() {
 
 //Comments
 Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
-Route::post('/comments/{$comment}/likes', [PostLikeController::class, 'store'])->name('comments.likes');
-Route::delete('/comments/{$comment}/likes', [PostLikeController::class, 'destroy'])->name('comments.likes');
+Route::post('/comments/{comment}/likes', [CommentLikeController::class, 'store'])->name('comments.likes');
+Route::delete('/comments/{comment}/likes', [CommentLikeController::class, 'destroy'])->name('comments.likes');
