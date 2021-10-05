@@ -17,6 +17,11 @@
                     </form>
                 </div>
             @endif
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             <p class="lead">By <b>{{ $post->user->name }}</b>, {{ date( 'F j, Y', strtotime($post->created_at)) }}</p>
             <div class="post-image my-3">
                 <img src="{{ $post->img_path }}" alt="post_image">
@@ -30,7 +35,7 @@
             <h2 class="medium text-center">Comments</h2>
             @if (Auth::check())
                 <div>
-                    <a href="{{ route('comments.create') }}" class="btn btn-success create mb-3">Create</a>
+                    <a href="{{ route('comments.create', $post->id) }}" class="btn btn-success create mb-3">Create</a>
                 </div>
             @endif
             
@@ -48,13 +53,13 @@
                                         @if (!$comment->likedBy(auth()->user()))
                                             <form action="{{ route('comments.likes', $comment) }}" method="post">
                                                 @csrf
-                                                <button type="submit" id="like-btn">Like</button>
+                                                <input type="submit" id="like-btn" value="Like">
                                             </form>
                                         @else
                                             <form action="{{ route('comments.likes', $comment) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="dislike-btn">Unlike</button>
+                                                <input type="submit" id="dislike-btn" value="Unlike">
                                             </form>
                                         @endif
                                     </div>
