@@ -44,5 +44,6 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 //Comments
 Route::get('/comments/{id}/create', [CommentController::class, 'create'])->name('comments.create');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comments/{id}', [CommentController::class, 'edit'])->name('comments.edit');
 Route::post('/comments/{comment}/likes', [CommentLikeController::class, 'store'])->name('comments.likes');
 Route::delete('/comments/{comment}/likes', [CommentLikeController::class, 'destroy'])->name('comments.likes');
