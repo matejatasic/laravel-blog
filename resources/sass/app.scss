@@ -83,8 +83,14 @@ body {
                 margin: auto 0.3rem;
             }
 
+            a {
+                text-decoration: none;
+                color: $light-color;
+            }
+
             #dropdown {
                 display: none;
+                top: 80%;
                 position: absolute;
                 width: 100%;
                 background: lighten($black-color, 5%);
@@ -163,6 +169,7 @@ body {
 
 .post-image {
     width: 100%;
+    height: auto;
 
     img {
         width: 100%;
@@ -173,6 +180,79 @@ body {
 .create {
     width: 10%;
     margin-left: 90%;
+}
+
+.user-auth-btns {
+    display: flex;
+    justify-content: space-around;
+
+    a {
+        height: 2.5rem;
+    }
+}
+
+//Comments
+.comment {
+    width: 80%;
+    border: 1px solid lightgray;
+    margin: 1rem auto;
+    display: flex;
+
+    div:first-child {
+        flex: 1;
+        position: relative;
+
+        img {
+            display: inline-block;
+            position: absolute;
+            top: 30%;
+            left: 40%; 
+            width: 60px;
+            height: auto;
+        }
+    }
+    div:last-child {
+        flex: 3;
+        padding: 1rem 1rem 1rem 0;
+
+        .comment-title {
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .comment-text {
+            font-size: 1.4rem;
+        }
+
+        div {
+            width: 100%;
+
+            #like-btn {
+                border: none;
+                color: $success-color;
+                font-size: 1.2rem;
+                margin-left: 1rem;
+                transition: 1s;
+
+                &:hover {
+                    color: lighten($success-color, 10%);
+                    cursor: pointer;
+                }
+            }
+            
+            #dislike-btn {
+                border: none;
+                color: $danger-color;
+                font-size: 1.2rem;
+
+                &:hover {
+                    color: lighten($danger-color, 10%);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
 
 // Pagination
