@@ -13,7 +13,7 @@ class Comment extends Model
     use HasFactory;
 
     public function likedBy(User $user) {
-        $this->likes->contains('user_id', $user_id);
+        return $this->likes->contains('user_id', $user->id);
     }
 
     public function user() {
