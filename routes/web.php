@@ -32,8 +32,6 @@ Route::get('/logout', [AuthController::class, 'postLogout'])->name('logout');
 
 // Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
-
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
@@ -41,8 +39,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
 //Comments
-Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
+Route::get('/comments/{id}/create', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::post('/comments/{comment}/likes', [CommentLikeController::class, 'store'])->name('comments.likes');
 Route::delete('/comments/{comment}/likes', [CommentLikeController::class, 'destroy'])->name('comments.likes');
