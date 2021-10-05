@@ -228,6 +228,8 @@ body {
 
         div {
             width: 100%;
+            display: flex;
+            justify-content: space-around;
 
             #like-btn {
                 border: none;
@@ -246,9 +248,25 @@ body {
                 border: none;
                 color: $danger-color;
                 font-size: 1.2rem;
+                margin-left: 1rem;
+                transition: 1s;
 
                 &:hover {
                     color: lighten($danger-color, 10%);
+                    cursor: pointer;
+                }
+            }
+
+            #edit-btn {
+                border: none;
+                color: $primary-color;
+                text-decoration: none;
+                font-size: 1.2rem;
+                margin-left: 1rem;
+                transition: 1s;
+
+                &:hover {
+                    color: lighten($primary-color, 10%);
                     cursor: pointer;
                 }
             }
