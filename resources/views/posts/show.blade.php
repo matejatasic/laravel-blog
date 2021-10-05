@@ -33,6 +33,38 @@
                     <a href="{{ route('comments.create') }}" class="btn btn-success create mb-3">Create</a>
                 </div>
             @endif
+            
+                @if (count($post->comments) > 0)
+                    @foreach ($post->comments as $comment)
+                        <div class="comment">
+                            <div>
+                                <img src="{{ $comment->user->img_path }}" alt="user_avatar">
+                            </div>
+                            <div>
+                                <h3 class="comment-title">{{ $comment->title }}</h3>
+                                <p class="comment-text">{{ $comment->comment }}</p>
+                                @if (Auth::check())
+                                    <div>
+                                        @if (!$comment->likedBy(auth()->user()))
+                                            <form action="{{ route('comments.likes', $comment) }}" method="post">
+                                                @csrf
+                                                <button type="submit" id="like-btn">Like</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('comments.likes', $comment) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dislike-btn">Unlike</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                @endif 
+                            </div>  
+                        </div>
+                    @endforeach
+                @else
+                    <p class="lead">No comments have been posted yet</p>
+                @endif
         </div>
     </div>
 @endsection
