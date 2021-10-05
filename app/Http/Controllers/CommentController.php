@@ -2,28 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Session;
 
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('comments.create', [
+            'post_id' => $id,
+        ]);
     }
 
     /**
@@ -34,7 +29,22 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:20',
+            'comment' => 'required',
+        ]);
+
+        $comment = new Comment;
+
+        $comment->title = $request->title;
+        $comment->comment = $request->comment;
+        $comment->post_id = $request->post_id;
+        $comment->user_id = auth()->user()->id;
+        $comment->save();
+
+        Session::flash('success', 'You have successfully created the comment!');
+
+        return redirect()->route('posts.show', $comment->post_id);
     }
 
     /**
