@@ -42,3 +42,5 @@ Route::group(['middleware' => 'auth'], function() {
 
 //Comments
 Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/comments/{$post}', [CommentController::class, 'storeLike'])->name('comments.likes');
+Route::delete('/comments/{$post}', [CommentController::class, 'destroy'])->name('comments.likes');
