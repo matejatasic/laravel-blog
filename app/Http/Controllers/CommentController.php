@@ -55,10 +55,10 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        $comment = Comment::find($id);
 
         return view('comments.edit', [
-            'post' => $post,
+            'comment' => $comment,
         ]);
     }
 
@@ -71,7 +71,20 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:20',
+            'comment' => 'required',
+        ]);
+
+        $comment = new Comment;
+
+        $comment->title = $request->title;
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        Session::flash('success', 'You have successfully updated the comment!');
+
+        return redirect()->route('posts.show', $comment->post_id);
     }
 
     /**
