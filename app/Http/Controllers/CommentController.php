@@ -76,7 +76,7 @@ class CommentController extends Controller
             'comment' => 'required',
         ]);
 
-        $comment = new Comment;
+        $comment = Comment::find();
 
         $comment->title = $request->title;
         $comment->comment = $request->comment;
