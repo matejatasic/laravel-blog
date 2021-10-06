@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Like;
 
-class User extends Authenticatable
+class User extends Authenticatable implements AuthenticatableContract, CanResetPasswordContract
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -25,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'img_path'
     ];
 
     /**
@@ -46,6 +49,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Check role
+    public function isAdmin() {
+        return $this->role === 'admin';
+    }
+    
+    public function isUser() {
+        return $this->role === 'user';
+    }
+
+    // Realtions with other models
     public function posts() {
         return $this->hasMany(Post::class);
     }
