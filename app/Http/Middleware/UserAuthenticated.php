@@ -16,8 +16,8 @@ class UserAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->isUser()) {
-            return redirect()->route('posts.index');
+        if(Auth::user()->isAdmin()) {
+            return redirect()->route('admin.index');
         }
         else {
             return $next($request);
