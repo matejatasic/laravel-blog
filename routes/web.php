@@ -1,85 +1,55 @@
-@extends('layouts.main')
+<?php
 
-@section('content')
-    <div class="container">
-        <div class="mb-2">
-            <h1 class="text-center large">{{ $post->title }}</h1>
-        </div>
-        <hr>
-        <div class="my-3">
-            @if ($post->user_id === auth()->user()->id)
-                <div class="user-auth-btns mb-2">
-                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary mb-1">Edit</a>
-                    <form action="{{ route('posts.destroy', $post->id )}}" method="POST" class="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" class="btn btn-danger" value="Delete">
-                    </form>
-                </div>
-            @endif
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success') }}
-                </div>
-            @endif
-            <p class="lead">By <b>{{ $post->user->name }}</b>, {{ date( 'F j, Y', strtotime($post->created_at)) }}</p>
-            <div class="post-image my-3">
-                <img src="{{ $post->img_path }}" alt="post_image">
-            </div>
-            <div>
-                <p class="lead">{{ $post->body }}</p>
-            </div>
-        </div>
-        <hr>
-        <div class="my-2">
-            <!-- comments -->
-            <h2 class="medium text-center">Comments</h2>
-            @if (Auth::check())
-                <div>
-                    <a href="{{ route('comments.create', $post->id) }}" class="btn btn-success create mb-3">Create</a>
-                </div>
-            @endif
-            
-            @if (count($post->comments) > 0)
-                @foreach ($post->comments as $comment)
-                    <div class="comment">
-                        <div>
-                            <img src="{{ $comment->user->img_path }}" alt="user_avatar">
-                        </div>
-                        <div>
-                            <h3 class="comment-title">{{ $comment->title }}</h3>
-                            <p class="comment-text">{{ $comment->comment }}</p>
-                            @if (Auth::check())
-                                <div>
-                                    @if (!$comment->likedBy(auth()->user()))
-                                        <form action="{{ route('comments.likes', $comment) }}" method="post">
-                                            @csrf
-                                            <input type="submit" id="like-btn" value="Like">
-                                        </form>
-                                    @else
-                                        <form action="{{ route('comments.likes', $comment) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" id="dislike-btn" value="Unlike">
-                                        </form>
-                                    @endif
-                                    @if (auth()->user()->id === $comment->user->id)
-                                        <a href="{{ route('comments.edit', $comment->id) }}" id="edit-btn">Edit</a>
-                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" id="delete-btn" value="Delete">
-                                        </form>
-                                    @endif
-                                </div>
-                            @endif 
-                        </div>  
-                    </div>
-                @endforeach
-            @else
-                <p class="lead">No comments have been posted yet</p>
-            @endif
-            <!-- !comments -->
-        </div>
-    </div>
-@endsection
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommentLikeController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Pages
+Route::get('/', [PageController::class, 'getHome'])->name('pages.home');
+Route::get('/about', [PageController::class, 'getAbout'])->name('pages.about');
+Route::get('/contact', [PageController::class, 'getContact'])->name('pages.contact');
+
+// Login & Registration
+Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
+Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
+Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
+Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
+Route::get('/logout', [AuthController::class, 'postLogout'])->name('logout');
+
+// Admin
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+// Posts
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+});
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+
+//Comments
+Route::get('/comments/{id}/create', [CommentController::class, 'create'])->name('comments.create');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::post('/comments/{comment}/likes', [CommentLikeController::class, 'store'])->name('comments.likes');
+Route::delete('/comments/{comment}/likes', [CommentLikeController::class, 'destroy'])->name('comments.likes');
