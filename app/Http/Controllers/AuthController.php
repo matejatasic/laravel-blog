@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Session;
 
 class AuthController extends Controller
 {
@@ -24,6 +25,8 @@ class AuthController extends Controller
         ]);
         
         if(Auth::attempt($credentials)) {
+            Session::flash('success', 'You have successfully logged in!');
+            
             return redirect()->route('posts.index');
         }
     }
@@ -39,6 +42,8 @@ class AuthController extends Controller
             ]);
 
             $image_name = '/img/user_images/' . time() . 'user_image.' . $request->img_path->extension();
+
+            $request->img_path->move(public_path('img/user_images'), $image_name);
         }
         else {
             $this->validate($request, [
@@ -47,7 +52,7 @@ class AuthController extends Controller
                 'password' => 'required|min:8|confirmed',
             ]);
 
-            $image_path = '/img/user_images/default_image.jpg';
+            $image_name = '/img/user_images/default_image.jpg';
         }
 
         $user = new User;
@@ -56,10 +61,10 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->img_path = $image_name;
         $user->save();
-        
-        $request->img_path->move(public_path('img/user_images'), $image_name);
 
-        return redirect()->route('posts.index');
+        Session::flash('success', 'You have successfully registered!');
+
+        return redirect()->route('getLogin');
     }
 
     public function postLogout(Request $request) {
