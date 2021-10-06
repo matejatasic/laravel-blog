@@ -74,6 +74,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        
         return view('posts.show', [
             'post' => $post,
         ]);
@@ -106,7 +107,7 @@ class PostController extends Controller
         $image_name;
         $old_image;
 
-        if($request->img_path->isValid()) {
+        if($request->hasFile('img_path') && $request->img_path->isValid()) {
             $this->validate($request, [
                 'title' => 'required|max:20',
                 'body' => 'required',
@@ -148,6 +149,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+        File::delete(public_path($post->img_path));
 
         Session::flash('success', 'Successfully deleted the post');
 
