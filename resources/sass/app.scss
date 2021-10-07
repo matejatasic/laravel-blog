@@ -287,6 +287,63 @@ body {
     }
 }
 
+// Admin
+#admin-sidebar {
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 0;
+    top: 10%;
+    left: 0;
+    background: darken($primary-color, 20%);
+    overflow-x: hidden;
+    padding-top: 20px;
+
+    a {
+        padding: 1rem 3rem;
+        text-decoration: none;
+        font-size: 25px;
+        color: $light-color;
+        display: block;
+
+        &:first-child {
+            border-bottom: 1px solid black;
+            padding-bottom: 1.8rem;
+        }
+
+        &:hover {
+            color: darken($light-color, 10%);
+        }
+    }
+}
+
+#main {
+    width: 80%;
+    margin-top: 7%;
+    margin-left: 17%;
+}
+
+#statistics {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-statistic {
+    flex-basis: 31%;
+    background: $primary-color;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1rem;
+    margin-left: 1rem;
+
+    h2 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+}
+
 // Pagination
 .pagination {
     display: flex;
