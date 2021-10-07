@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel Blog</title>
 
@@ -58,7 +59,7 @@
         <!-- admin-sidebar -->
         <div id="admin-sidebar">
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-            <a href="#">Posts</a>
+            <a href="{{ route('admin.posts') }}">Posts</a>
             <a href="#">Categories</a>
             <a href="#">Tags</a>
         </div>
@@ -68,54 +69,54 @@
             @yield('content')
         </div>
 
-        @if (Auth::check())
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <script>
-                let username = $('#username');
-                let avatar = $('#avatar');
-                let dropdown = $('#dropdown'); 
-                let isActive = false;
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            let username = $('#username');
+            let avatar = $('#avatar');
+            let dropdown = $('#dropdown'); 
+            let isActive = false;
 
-                function toggleDropdown() {
-                    if(!isActive) {
-                        dropdown.css('display', 'block');
-                        isActive = true;
-                    }
-                    else {
-                        dropdown.css('display', 'none');
-                        isActive = false;
-                    }
+            function toggleDropdown() {
+                if(!isActive) {
+                    dropdown.css('display', 'block');
+                    isActive = true;
                 }
-
-                function onEnterChange() {
-                    avatar.css('cursor', 'pointer');
-                    username.css({
-                        'cursor': 'pointer',
-                        'color': '#b2a1a1'
-                    });
+                else {
+                    dropdown.css('display', 'none');
+                    isActive = false;
                 }
-                
-                function onOutChange() {
-                    avatar.css('cursor', 'default');
-                    username.css({
-                        'color': '#e0d9d9'
-                    });
+            }
+
+            function onEnterChange() {
+                avatar.css('cursor', 'pointer');
+                username.css({
+                    'cursor': 'pointer',
+                    'color': '#b2a1a1'
+                });
+            }
+            
+            function onOutChange() {
+                avatar.css('cursor', 'default');
+                username.css({
+                    'color': '#e0d9d9'
+                });
+            }
+
+            // On button click show or hide dropdown
+            username.on('click', toggleDropdown)
+            username.hover(onEnterChange, onOutChange);
+            avatar.hover(onEnterChange, onOutChange);
+            avatar.on('click', toggleDropdown);
+
+            // Hide dropdown if click is outside of button
+            $(window).click((e) => {
+                if(isActive && !e.target.matches('#username') && !e.target.matches('#avatar')) {
+                    dropdown.css('display', 'none');
+                    isActive = false;   
                 }
+            }); 
+        </script>
 
-                // On button click show or hide dropdown
-                username.on('click', toggleDropdown)
-                username.hover(onEnterChange, onOutChange);
-                avatar.hover(onEnterChange, onOutChange);
-                avatar.on('click', toggleDropdown);
-
-                // Hide dropdown if click is outside of button
-                $(window).click((e) => {
-                    if(isActive && !e.target.matches('#username') && !e.target.matches('#avatar')) {
-                        dropdown.css('display', 'none');
-                        isActive = false;   
-                    }
-                }); 
-            </script>
-        @endif
+        @yield('scripts')
     </body>
 </html>
