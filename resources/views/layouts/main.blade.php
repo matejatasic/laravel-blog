@@ -8,11 +8,9 @@
 
         <!-- Custom styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        
-        
+
         @if (Auth::check())
-            <!-- Font awesome -->
-            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+            <script src="https://kit.fontawesome.com/f9d2d5cb9c.js" crossorigin="anonymous"></script>
         @endif
     </head>
     <body>
@@ -34,6 +32,11 @@
                 <li>
                     <a href="{{ route('pages.contact') }}">Contact</a>
                 </li>
+                @if (auth()->user()->isAdmin())
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    </li>    
+                @endif
             </ul>
             @if (Auth::check())
                 <div class="right-nav">
