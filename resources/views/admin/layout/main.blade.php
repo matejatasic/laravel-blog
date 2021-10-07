@@ -33,7 +33,7 @@
                     <a href="{{ route('pages.contact') }}">Contact</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}">Dashboard</a>
+                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
             </ul>
 
@@ -57,13 +57,16 @@
 
         <!-- admin-sidebar -->
         <div id="admin-sidebar">
+            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
             <a href="#">Posts</a>
             <a href="#">Categories</a>
             <a href="#">Tags</a>
         </div>
         <!-- !admin-sidebar -->
 
-        @yield('content')
+        <div id="main">
+            @yield('content')
+        </div>
 
         @if (Auth::check())
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
