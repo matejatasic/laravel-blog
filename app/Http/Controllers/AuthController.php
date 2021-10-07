@@ -25,9 +25,16 @@ class AuthController extends Controller
         ]);
         
         if(Auth::attempt($credentials)) {
-            Session::flash('success', 'You have successfully logged in!');
+            $user = User::where('email', $request->email)->first();
+
+            if($user->isAdmin()) {
+                return redirect()->route('admin.index');   
+            }
+            else if($user->isUser()) {
+                Session::flash('success', 'You have successfully logged in!');
             
-            return redirect()->route('posts.index');
+                return redirect()->route('posts.index');
+            }
         }
     }
 
