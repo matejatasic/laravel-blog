@@ -20,4 +20,20 @@ class AdminController extends Controller
             'likes' => $likes,
         ]);
     }
+
+    public function getPosts() {
+        $posts = Post::paginate(10);
+        
+        return view('admin.posts', [
+            'posts' => $posts,
+        ]);
+    }
+
+    public function showPost($id) {
+        $post = Post::find($id);
+        
+        return response()->json([
+            'data' => $post,
+        ]);
+    }
 }
