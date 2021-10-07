@@ -32,7 +32,9 @@ Route::post('/register', [AuthController::class, 'postRegister'])->name('postReg
 Route::get('/logout', [AuthController::class, 'postLogout'])->name('logout');
 
 // Admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/posts', [AdminController::class, 'getPosts'])->name('admin.posts');
+Route::get('/admin/posts/{id}', [AdminController::class, 'showPost']);
 
 // Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
