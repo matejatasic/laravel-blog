@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Category;
+use App\Models\Tag;
 use App\Models\Like;
 
 class AdminController extends Controller
@@ -42,6 +45,38 @@ class AdminController extends Controller
         
         return response()->json([
             'data' => $post,
+        ]);
+    }
+
+    public function getComments() {
+        $comments = Comment::paginate(10);
+        
+        return view('admin.comments', [
+            'comments' => $comments,
+        ]);
+    }
+
+    public function getCategories() {
+        $categories = Category::paginate(10);
+        
+        return view('admin.categories', [
+            'categories' => $categories,
+        ]);
+    }
+
+    public function getTags() {
+        $tags = Tag::paginate(10);
+        
+        return view('admin.tags', [
+            'tags' => $tags,
+        ]);
+    }
+    
+    public function getLikes() {
+        $likes = Like::paginate(10);
+        
+        return view('admin.likes', [
+            'likes' => $likes,
         ]);
     }
 }
