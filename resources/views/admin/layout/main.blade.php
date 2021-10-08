@@ -61,8 +61,8 @@
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
             <a href="{{ route('admin.users') }}">Users</a>
             <a href="{{ route('admin.posts') }}">Posts</a>
-            <a href="#">Categories</a>
-            <a href="#">Tags</a>
+            <a href="{{ route('admin.categories') }}">Categories</a>
+            <a href="{{ route('admin.tags') }}">Tags</a>
         </div>
         <!-- !admin-sidebar -->
 
