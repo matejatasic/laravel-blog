@@ -360,6 +360,26 @@ body {
         img {
             width: 100px;
         }
+        
+        p {
+            text-align: center;
+        }
+        
+        td {
+            text-align: center;
+        }
+
+        td:last-child {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+
+            .btn:first-child {
+                margin: 0.8rem;
+            }
+        }
+
         .btn {
             width: 5rem;
             margin-bottom: 0.5rem;
