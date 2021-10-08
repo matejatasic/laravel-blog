@@ -30,7 +30,7 @@ class AuthController extends Controller
             Session::flash('success', 'You have successfully logged in!');
 
             if($user->isAdmin()) {
-                return redirect()->route('admin.index');   
+                return redirect()->route('admin.dashboard');   
             }
             else if($user->isUser()) {
                 return redirect()->route('posts.index');
