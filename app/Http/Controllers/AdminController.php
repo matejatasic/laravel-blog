@@ -21,6 +21,14 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getUsers() {
+        $users = User::paginate(10);
+        
+        return view('admin.users', [
+            'users' => $users,
+        ]);
+    }
+
     public function getPosts() {
         $posts = Post::paginate(10);
         
