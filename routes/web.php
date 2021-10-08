@@ -33,6 +33,7 @@ Route::get('/logout', [AuthController::class, 'postLogout'])->name('logout');
 
 // Admin
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/users', [AdminController::class, 'getUsers'])->name('admin.users');
 Route::get('/admin/posts', [AdminController::class, 'getPosts'])->name('admin.posts');
 Route::get('/admin/posts/{id}', [AdminController::class, 'showPost']);
 
