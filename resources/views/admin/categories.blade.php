@@ -35,4 +35,5 @@
             </tbody>
         </table>
         {{ $categories->links('vendor.custom') }}
-    @endsection
+    </div>
+@endsection
