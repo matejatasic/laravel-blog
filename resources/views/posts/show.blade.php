@@ -23,6 +23,16 @@
                 </div>
             @endif
             <p class="lead">By <b>{{ $post->user->name }}</b>, {{ date( 'F j, Y', strtotime($post->created_at)) }}</p>
+            <div class="mb-2">
+                <strong>Tags:</strong>
+                @foreach ($post->tags as $tag)
+                    <span class="badge badge-primary">{{ $tag->name }}</span>
+                @endforeach
+            </div>
+            <div>
+                <strong>Category:</strong>
+                <span class="badge badge-dark">{{ $post->category->name }}</span>
+            </div>
             <div class="post-image my-3">
                 <img src="{{ $post->img_path }}" alt="post_image">
             </div>
