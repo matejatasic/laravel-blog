@@ -7,6 +7,19 @@
         </div>
         <hr>
         <div class="my-3">
+            <!-- category -->
+            @if ($category_id === 0)
+                <div>
+                    <strong id="category">Blog > All</strong>
+                </div>
+            @else
+            <div>
+                <strong id="category">Blog > {{ $categories[$category_id]->name }}</strong>
+            </div>
+            @endif
+            <!-- !category -->
+
+            <!-- session -->
             @if (Session::has('success'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('success') }}
@@ -17,8 +30,11 @@
                     <a href="{{ route('posts.create') }}" class="btn btn-success create mb-3">Create</a>
                 </div>
             @endif
+            <!-- !session -->
+
+            <!-- select category -->
             <div>
-                <form action="" class="form">
+                <form class="form">
                     <select name="categories" id="categories">
                         <option value="-">-</option>
                         <option value="0">All</option>
@@ -28,6 +44,9 @@
                     </select>
                 </form>
             </div>
+            <!-- select category -->
+
+            <!-- posts -->
             @foreach ($posts as $post)
                 <div class="blog-post mb-4">
                     <div>
@@ -39,12 +58,21 @@
                         <p class="lead">
                             {{ strlen(strip_tags($post->body)) > 150 ? substr(strip_tags($post->body), 0, 150) . '...' : strip_tags($post->body) }}
                         </p>
-                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary mb-2">Read More</a>
+                        @if (count($post->tags) > 0)
+                            <div>
+                                <strong>Tags:</strong>
+                                @foreach ($post->tags as $tag)
+                                    <span class="badge badge-dark">{{ $tag->name }}</span>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
         </div>
         {{ $posts->links('vendor.custom') }}
+        <!-- !posts -->
     </div>
 @endsection
 
