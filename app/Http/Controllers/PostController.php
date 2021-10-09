@@ -15,12 +15,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category_id = 0)
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
-
+        if($category_id === 0) {
+            $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        }
+        else {
+            $posts = Post::where('category_id', $category_id)->paginate(10);    
+        }
+        $categories = Category::all();
+        
         return view('posts.index', [
             'posts' => $posts,
+            'categories' => $categories,
         ]);
     }
 
