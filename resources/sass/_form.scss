@@ -42,6 +42,20 @@
         font-size: 2rem;
         text-align: center;
     }
+
+    .select2-selection__rendered {
+        line-height: 31px !important;
+    }
+    .select2-container .select2-selection--single {
+        height: 35px !important;
+    }
+    .select2-selection__arrow {
+        height: 34px !important;
+    }
+
+    #dropList1 + .select2-container--default .select2-selection--multiple{
+        height: auto;
+      }
 }
 
 .login-form, .register-form {
