@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('img_path');
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->enum('status', ['active', 'banned'])->default('active');
             $table->rememberToken();
             $table->timestamps();
         });
