@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('styles')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
     <div class="container">
         <div class="mb-2">
@@ -31,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label>Category</label>
-                    <select name="categories">
+                    <select name="category_id">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
@@ -52,9 +56,7 @@
 @endsection
 
 @section('scripts')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
     <script type="text/javascript">
         $('.select-category').select2();
     </script>
