@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->enum('approved', ['approved', 'unapproved']);
             $table->timestamps();
         });
     }
