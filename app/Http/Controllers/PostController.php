@@ -58,6 +58,7 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required|max:20',
             'body' => 'required',
+            'category_id' => 'required|integer',
             'img_path' => 'required|mimes:jpeg,png|max:1024'
         ]);
 
@@ -69,7 +70,10 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->user_id = Auth::id();
         $post->img_path = $image_name;
+        $post->category_id = $request->category_id;
         $post->save();
+
+        $post->tags()->sync($request->tags, false);
 
         $request->img_path->move(public_path('img/post_images'), $image_name);
 
@@ -102,8 +106,13 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
+        $tags = Tag::all();
+
         return view('posts.edit', [
             'post' => $post,
+            'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -124,6 +133,7 @@ class PostController extends Controller
             $this->validate($request, [
                 'title' => 'required|max:20',
                 'body' => 'required',
+                'category_id' => 'required|integer',
                 'img_path' => 'mimes:jpeg,png|max:1024'
             ]);
 
@@ -137,6 +147,7 @@ class PostController extends Controller
             $this->validate($request, [
                 'title' => 'required|max:20',
                 'body' => 'required',
+                'category_id' => 'required|integer',
             ]);
 
             $image_name = $post->img_path;
@@ -145,7 +156,15 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->img_path = $image_name;
+        $post->category_id = $request->category_id;
         $post->save();
+
+        if(isset($request->tags)) {
+            $post->tags()->sync($request->tags, false);
+        }
+        else {
+            $post->tags()->sync(array());    
+        }
 
         Session::flash('success', 'Successfully updated the post!');
 
