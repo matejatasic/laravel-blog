@@ -26,6 +26,7 @@ class CommentFactory extends Factory
             'comment' => $this->faker->realText(200),
             'user_id' => $this->faker->randomDigitNot(0),
             'post_id' => $this->faker->numberBetween(1, 30),
+            'approved' => 'approved',
         ];
     }
 }
