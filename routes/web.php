@@ -42,6 +42,10 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin/posts/{id}', [AdminController::class, 'showPost']);
     Route::delete('/admin/posts/{id}', [AdminController::class, 'deletePost'])->name('admin.deletePost');
     Route::get('/admin/comments', [AdminController::class, 'getComments'])->name('admin.comments');
+    Route::post('/admin/comments/approve', [AdminController::class, 'approveComment'])->name('admin.approveComment');
+    Route::get('/admin/comments/{id}', [AdminController::class, 'editComment']);
+    Route::put('/admin/comments/{id}', [AdminController::class, 'updateComment'])->name('admin.editComment');
+    Route::delete('/admin/comments/{id}', [AdminController::class, 'deleteComment'])->name('admin.deleteComment');
     Route::get('/admin/categories', [AdminController::class, 'getCategories'])->name('admin.categories');
     Route::get('/admin/tags', [AdminController::class, 'getTags'])->name('admin.tags');
     Route::get('/admin/likes', [AdminController::class, 'getLikes'])->name('admin.likes');
