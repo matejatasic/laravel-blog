@@ -11,6 +11,9 @@
                 {{ Session::get('success') }}
             </div>
         @endif
+        <div>
+            <button class="btn btn-success create mb-3" id="createModalBtn">Create</button>
+        </div>
         <table id="posts-table" class="mb-2">
             <thead>
                 <tr>
@@ -78,7 +81,25 @@
                 `);
             });
         });
-        
+
+        $('#createModalBtn').click((e) => {
+            modal.css('display', 'block');
+
+            $('#modal-header').css('background', '#b2a1a1')
+                $('#modal-title').html('Create category');
+            $('#modal-body').html(`
+                <form action="{{ route('admin.createCategory') }}" method="POST" id="createForm" class="form my-3">
+                    @csrf
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name">
+                        </div>
+                    
+                        <input type="submit" id="submit" class="btn btn-success" value="Create">
+                </form>
+                `);
+        });
+
         $('.approveModalBtn').click((e) => {
             event.stopPropagation();
             event.stopImmediatePropagation();
@@ -86,9 +107,9 @@
             let id = e.target.id;
             modal.css('display', 'block');
             $('#modal-header').css('background', 'rgb(28, 180, 28)');
-            $('#modal-title').html('Are you sure you want to approve this comment?')
+            $('#modal-title').html('Are you sure you want to approve this category?')
             $('#modal-body').html(`
-                <form action="{{ route('admin.approveComment') }}" method="POST">
+                <form action="{{ route('admin.approveCategory') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="${id}">    
                     <input type="submit" class="btn btn-success" value="Approve">    
@@ -101,11 +122,11 @@
             event.stopImmediatePropagation();
 
             let id = e.target.id;
-            let route = '{{ route("admin.deleteComment", ":id") }}'; 
+            let route = '{{ route("admin.deleteCategory", ":id") }}'; 
             route = route.replace(':id', id);
             modal.css('display', 'block');
             $('#modal-header').css('background', 'rgb(204, 55, 55)');
-            $('#modal-title').html('Are you sure you want to delete this comment?')
+            $('#modal-title').html('Are you sure you want to delete this category?')
             $('#modal-body').html(`
                 <form action="${route}" method="POST">
                     @csrf
