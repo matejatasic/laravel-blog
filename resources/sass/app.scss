@@ -154,6 +154,10 @@ body {
 }
 
 // Blog
+#category {
+    font-size: 1.2rem;
+}
+
 .blog-post {
     display: flex;
 
@@ -400,13 +404,13 @@ body {
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+#modal-content {
     background-color: $light-color;
     margin: 15% auto;
     border: 1px solid $black-color;
     width: 80%;
     
-    .modal-header {
+    #modal-header {
         padding: 0.5rem auto;
         background-color: $primary-color;
         color: white;
@@ -417,7 +421,7 @@ body {
         }
     }
 
-    .modal-body {
+    #modal-body {
         padding: 1rem;
 
         #post-image {
@@ -427,12 +431,20 @@ body {
         #post-body {
             margin: 1rem 0;
         }
+        form {
+            width: 100%;
+
+            input {
+                margin: 0 auto;
+            }
+        }
     }
 }
 
 #close {
-    color: #aaa;
+    color: rgb(114, 111, 111);
     float: right;
+    margin-right: 10px;
     font-size: 28px;
     font-weight: bold;
 
