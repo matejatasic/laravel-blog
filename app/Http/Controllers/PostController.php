@@ -70,6 +70,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->user_id = Auth::id();
         $post->img_path = $image_name;
+        $post->approved = 'unapproved';
         $post->category_id = $request->category_id;
         $post->save();
 
@@ -181,7 +182,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+        $post->tags()->detach();
         File::delete(public_path($post->img_path));
+
 
         Session::flash('success', 'Successfully deleted the post');
 
