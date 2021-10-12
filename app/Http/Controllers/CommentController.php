@@ -40,6 +40,7 @@ class CommentController extends Controller
         $comment->comment = $request->comment;
         $comment->post_id = $request->post_id;
         $comment->user_id = auth()->user()->id;
+        $comment->approved = 'unapproved';
         $comment->save();
 
         Session::flash('success', 'You have successfully created the comment!');
