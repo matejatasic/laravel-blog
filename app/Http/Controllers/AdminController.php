@@ -71,7 +71,7 @@ class AdminController extends Controller
         File::delete(public_path($post->img_path));
 
 
-        Session::flash('success', 'Successfully deleted the post');
+        Session::flash('success', 'You have successfully deleted the post');
 
         return redirect()->route('admin.posts');
     }
@@ -121,14 +121,11 @@ class AdminController extends Controller
         return redirect()->route('admin.comments');
     }
     
-    public function deleteComment(Request $request) {
-        $comment = Comment::find($request->id);
+    public function deleteComment($id) {
+        $comment = Comment::find($id);
+        $comment->delete();
 
-        $comment->approved = 'approved';
-
-        $comment->save();
-        
-        Session::flash('success', 'You have successfully approved the comment!');
+        Session::flash('success', 'You have successfully deleted the comment!');
 
         return redirect()->route('admin.comments');
     }
@@ -139,6 +136,21 @@ class AdminController extends Controller
         return view('admin.categories', [
             'categories' => $categories,
         ]);
+    }
+
+    public function createCategory(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|max:20',
+        ]);
+
+        $category = new Category;
+
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'You have successfully created the category!');
+
+        return redirect()->route('admin.categories');
     }
 
     public function editCategory($id) {
@@ -159,7 +171,16 @@ class AdminController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        Session::flash('success', 'You have successfully updated the comment!');
+        Session::flash('success', 'You have successfully updated the category!');
+
+        return redirect()->route('admin.categories');
+    }
+
+    public function deleteCategory($id) {
+        $category = Category::find($request->id);
+        $category->delete();
+
+        Session::flash('success', 'You have successfully deleted the category!');
 
         return redirect()->route('admin.categories');
     }
