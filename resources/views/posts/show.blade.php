@@ -7,14 +7,10 @@
         </div>
         <hr>
         <div class="my-3">
-            @if (Auth::check() && $post->user_id === auth()->user()->id)
+            @if (Auth::check() && $post->user_id === auth()->user()->id || auth()->user()->isAdmin())
                 <div class="user-auth-btns mb-2">
                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary mb-1">Edit</a>
-                    <form action="{{ route('posts.destroy', $post->id )}}" method="POST" class="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" class="btn btn-danger" value="Delete">
-                    </form>
+                    <button class="btn btn-danger" id="deleteBtn">Delete</button>
                 </div>
             @endif
             @if (Session::has('success'))
@@ -92,4 +88,48 @@
             <!-- !comments -->
         </div>
     </div>
+
+    <!-- modal -->
+    <div id="viewModal" class="modal">
+        <div id="modal-content">
+            <div id="modal-header">
+                <span id="close">&times;</span>
+                <h2 id="modal-title"></h2>
+            </div>
+            <div id="modal-body">
+                
+            </div>
+        </div>
+    </div>
+    <!-- !modal -->
+@endsection
+
+@section('scripts')
+    <script>
+        let modal = $('#viewModal');
+        const close = $('#close');
+        
+        $('#deleteBtn').click(() => {
+            modal.css('display', 'block');
+            $('#modal-header').css('background', 'rgb(204, 55, 55)');
+            $('#modal-title').html('Are you sure you want to delete this post?')
+            $('#modal-body').html(`
+                <form action="{{ route('posts.destroy', $post->id )}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            `);
+        });
+
+        close.click(() => {
+            modal.css('display', 'none');
+        });
+
+        $(window).click((e) => {
+            if(e.target.id === 'viewModal' ) {
+                modal.css('display', 'none');
+            }
+        });
+    </script>
 @endsection
