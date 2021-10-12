@@ -38,11 +38,13 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/users', [AdminController::class, 'getUsers'])->name('admin.users');
     Route::get('/admin/posts', [AdminController::class, 'getPosts'])->name('admin.posts');
+    Route::post('/admin/posts/approve', [AdminController::class, 'approvePost'])->name('admin.approvePost');
+    Route::get('/admin/posts/{id}', [AdminController::class, 'showPost']);
+    Route::delete('/admin/posts/{id}', [AdminController::class, 'deletePost'])->name('admin.deletePost');
     Route::get('/admin/comments', [AdminController::class, 'getComments'])->name('admin.comments');
     Route::get('/admin/categories', [AdminController::class, 'getCategories'])->name('admin.categories');
     Route::get('/admin/tags', [AdminController::class, 'getTags'])->name('admin.tags');
     Route::get('/admin/likes', [AdminController::class, 'getLikes'])->name('admin.likes');
-    Route::get('/admin/posts/{id}', [AdminController::class, 'showPost']);
 });
 
 // Posts
