@@ -47,8 +47,10 @@ Route::group(['middleware' => 'admin'], function() {
     Route::put('/admin/comments/{id}', [AdminController::class, 'updateComment'])->name('admin.editComment');
     Route::delete('/admin/comments/{id}', [AdminController::class, 'deleteComment'])->name('admin.deleteComment');
     Route::get('/admin/categories', [AdminController::class, 'getCategories'])->name('admin.categories');
+    Route::post('/admin/categories/create', [AdminController::class, 'createCategory'])->name('admin.createCategory');
     Route::get('/admin/categories/{id}', [AdminController::class, 'editCategory']);
-    Route::put('/admin/comments/{id}', [AdminController::class, 'updateCategory'])->name('admin.editCategory');
+    Route::put('/admin/categories/{id}', [AdminController::class, 'updateCategory'])->name('admin.editCategory');
+    Route::delete('/admin/categories/{id}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
     Route::get('/admin/tags', [AdminController::class, 'getTags'])->name('admin.tags');
     Route::get('/admin/likes', [AdminController::class, 'getLikes'])->name('admin.likes');
 });
