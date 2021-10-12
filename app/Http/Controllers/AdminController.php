@@ -88,7 +88,7 @@ class AdminController extends Controller
         $comment = Comment::find($id);
         
         return response()->json([
-            'data' => [$comment],
+            'data' => $comment,
         ]);
     }
     
@@ -139,6 +139,29 @@ class AdminController extends Controller
         return view('admin.categories', [
             'categories' => $categories,
         ]);
+    }
+
+    public function editCategory($id) {
+        $category = Category::find($id);
+        
+        return response()->json([
+            'data' => $category,
+        ]);
+    }
+    
+    public function updateCategory(Request $request, $id) {
+        $this->validate($request, [
+            'name' => 'required|max:20',
+        ]);
+
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'You have successfully updated the comment!');
+
+        return redirect()->route('admin.categories');
     }
 
     public function getTags() {
