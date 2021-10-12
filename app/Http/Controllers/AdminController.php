@@ -83,6 +83,55 @@ class AdminController extends Controller
             'comments' => $comments,
         ]);
     }
+    
+    public function editComment($id) {
+        $comment = Comment::find($id);
+        
+        return response()->json([
+            'data' => [$comment],
+        ]);
+    }
+    
+    public function updateComment(Request $request, $id) {
+        $this->validate($request, [
+            'title' => 'required|max:20',
+            'comment' => 'required',
+        ]);
+
+        $comment = Comment::find($id);
+
+        $comment->title = $request->title;
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        Session::flash('success', 'You have successfully updated the comment!');
+
+        return redirect()->route('admin.comments');
+    }
+
+    public function approveComment(Request $request) {
+        $comment = Comment::find($request->id);
+
+        $comment->approved = 'approved';
+
+        $comment->save();
+        
+        Session::flash('success', 'You have successfully approved the comment!');
+
+        return redirect()->route('admin.comments');
+    }
+    
+    public function deleteComment(Request $request) {
+        $comment = Comment::find($request->id);
+
+        $comment->approved = 'approved';
+
+        $comment->save();
+        
+        Session::flash('success', 'You have successfully approved the comment!');
+
+        return redirect()->route('admin.comments');
+    }
 
     public function getCategories() {
         $categories = Category::paginate(10);
