@@ -26,6 +26,7 @@ class PostFactory extends Factory
             'body' => $this->faker->realText(500),
             'user_id' => $this->faker->randomDigitNot(0),
             'img_path' => '/img/post_images/post_image.jpg',
+            'category_id' => $this->faker->numberBetween(1, 5),
             'approved' => 'approved',
         ];
     }
