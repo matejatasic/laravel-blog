@@ -35,6 +35,38 @@ class AdminController extends Controller
         ]);
     }
 
+    public function banUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status = 'banned';
+        $user->save();
+
+        Session::flash('success', 'You have successfully banned the user!');
+
+        return redirect()->route('admin.users');
+    }
+    
+    public function unbanUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status = 'active';
+        $user->save();
+
+        Session::flash('success', 'You have successfully unbanned the user!');
+
+        return redirect()->route('admin.users');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        Session::flash('success', 'You have successfully deleted the user!');
+
+        return redirect()->route('admin.users');
+    }
+
     // Posts
     public function getPosts() {
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
