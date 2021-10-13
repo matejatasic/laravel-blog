@@ -31,7 +31,7 @@
                         <td>{{ count($category->posts) }}</td>
                         <td>
                             <button class="btn btn-primary viewBtn" id="{{ $category->id }}">Edit</button>
-                            <button class="btn btn-danger deleteBtn" id="{{ $category->id }}">Delete</button>
+                            <button class="btn btn-danger deleteModalBtn" id="{{ $category->id }}">Delete</button>
                         </td>
                     </tr>
                 @endforeach
@@ -98,23 +98,6 @@
                         <input type="submit" id="submit" class="btn btn-success" value="Create">
                 </form>
                 `);
-        });
-
-        $('.approveModalBtn').click((e) => {
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-
-            let id = e.target.id;
-            modal.css('display', 'block');
-            $('#modal-header').css('background', 'rgb(28, 180, 28)');
-            $('#modal-title').html('Are you sure you want to approve this category?')
-            $('#modal-body').html(`
-                <form action="{{ route('admin.approveCategory') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="id" value="${id}">    
-                    <input type="submit" class="btn btn-success" value="Approve">    
-                </form>
-            `);
         });
 
         $('.deleteModalBtn').click((e) => {
