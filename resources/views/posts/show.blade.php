@@ -69,7 +69,7 @@
                                             <input type="submit" id="dislike-btn" value="Unlike">
                                         </form>
                                     @endif
-                                    @if (auth()->user()->id === $comment->user->id)
+                                    @if (auth()->user()->id === $comment->user->id || auth()->user()->isAdmin())
                                         <a href="{{ route('comments.edit', $comment->id) }}" id="edit-btn">Edit</a>
                                         <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
                                             @csrf
@@ -133,3 +133,4 @@
         });
     </script>
 @endsection
+
