@@ -59,6 +59,7 @@
             }
         });
 
+        //Edit modal
         $('.viewBtn').click((e) => {
             event.stopPropagation();
             event.stopImmediatePropagation();
@@ -69,7 +70,7 @@
             modal.css('display', 'block');
 
             $.get('/admin/comments/' + id, (data) => {
-                let comment = data.data[0];
+                let comment = data.data;
 
                 $('#modal-header').css('background', '#b2a1a1')
                 $('#modal-title').html('Edit comment');
