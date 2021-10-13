@@ -39,6 +39,9 @@ Route::group(['middleware' => 'admin'], function() {
     
     // Users
     Route::get('/admin/users', [AdminController::class, 'getUsers'])->name('admin.users');
+    Route::put('/admin/users/ban', [AdminController::class, 'banUser'])->name('admin.banUser');
+    Route::put('/admin/users/unban', [AdminController::class, 'unbanUser'])->name('admin.unbanUser');
+    Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 
     // Posts
     Route::get('/admin/posts', [AdminController::class, 'getPosts'])->name('admin.posts');
