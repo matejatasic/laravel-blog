@@ -26,6 +26,7 @@ class AdminController extends Controller
         ]);
     }
 
+    // Users
     public function getUsers() {
         $users = User::paginate(10);
         
@@ -34,6 +35,7 @@ class AdminController extends Controller
         ]);
     }
 
+    // Posts
     public function getPosts() {
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         
@@ -76,6 +78,7 @@ class AdminController extends Controller
         return redirect()->route('admin.posts');
     }
 
+    // Comments
     public function getComments() {
         $comments = Comment::paginate(10);
         
@@ -130,6 +133,7 @@ class AdminController extends Controller
         return redirect()->route('admin.comments');
     }
 
+    // Categories
     public function getCategories() {
         $categories = Category::paginate(10);
         
@@ -177,7 +181,7 @@ class AdminController extends Controller
     }
 
     public function deleteCategory($id) {
-        $category = Category::find($request->id);
+        $category = Category::find($id);
         $category->delete();
 
         Session::flash('success', 'You have successfully deleted the category!');
@@ -185,6 +189,7 @@ class AdminController extends Controller
         return redirect()->route('admin.categories');
     }
 
+    // Tags
     public function getTags() {
         $tags = Tag::paginate(10);
         
@@ -192,7 +197,55 @@ class AdminController extends Controller
             'tags' => $tags,
         ]);
     }
+
+    public function createTag(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|max:20',
+        ]);
+
+        $tag = new Tag;
+
+        $tag->name = $request->name;
+        $tag->save();
+
+        Session::flash('success', 'You have successfully created the tag!');
+
+        return redirect()->route('admin.tags');
+    }
+
+    public function editTag($id) {
+        $tag = Tag::find($id);
+        
+        return response()->json([
+            'data' => $tag,
+        ]);
+    }
     
+    public function updateTag(Request $request, $id) {
+        $this->validate($request, [
+            'name' => 'required|max:20',
+        ]);
+
+        $tag = Tag::find($id);
+
+        $tag->name = $request->name;
+        $tag->save();
+
+        Session::flash('success', 'You have successfully updated the tag!');
+
+        return redirect()->route('admin.tags');
+    }
+
+    public function deleteTag($id) {
+        $tag = Tag::find($id);
+        $tag->delete();
+
+        Session::flash('success', 'You have successfully deleted the tag!');
+
+        return redirect()->route('admin.tags');
+    }
+    
+    // Likes
     public function getLikes() {
         $likes = Like::paginate(10);
         
