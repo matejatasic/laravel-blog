@@ -36,22 +36,38 @@ Route::get('/logout', [AuthController::class, 'postLogout'])->middleware('auth')
 // Admin
 Route::group(['middleware' => 'admin'], function() {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    
+    // Users
     Route::get('/admin/users', [AdminController::class, 'getUsers'])->name('admin.users');
+
+    // Posts
     Route::get('/admin/posts', [AdminController::class, 'getPosts'])->name('admin.posts');
     Route::post('/admin/posts/approve', [AdminController::class, 'approvePost'])->name('admin.approvePost');
     Route::get('/admin/posts/{id}', [AdminController::class, 'showPost']);
     Route::delete('/admin/posts/{id}', [AdminController::class, 'deletePost'])->name('admin.deletePost');
+
+    // Comments
     Route::get('/admin/comments', [AdminController::class, 'getComments'])->name('admin.comments');
     Route::post('/admin/comments/approve', [AdminController::class, 'approveComment'])->name('admin.approveComment');
     Route::get('/admin/comments/{id}', [AdminController::class, 'editComment']);
     Route::put('/admin/comments/{id}', [AdminController::class, 'updateComment'])->name('admin.editComment');
     Route::delete('/admin/comments/{id}', [AdminController::class, 'deleteComment'])->name('admin.deleteComment');
+    
+    // Categories
     Route::get('/admin/categories', [AdminController::class, 'getCategories'])->name('admin.categories');
     Route::post('/admin/categories/create', [AdminController::class, 'createCategory'])->name('admin.createCategory');
     Route::get('/admin/categories/{id}', [AdminController::class, 'editCategory']);
     Route::put('/admin/categories/{id}', [AdminController::class, 'updateCategory'])->name('admin.editCategory');
     Route::delete('/admin/categories/{id}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
+    
+    // Tags
     Route::get('/admin/tags', [AdminController::class, 'getTags'])->name('admin.tags');
+    Route::post('/admin/tags/create', [AdminController::class, 'createTag'])->name('admin.createTag');
+    Route::get('/admin/tags/{id}', [AdminController::class, 'editTag']);
+    Route::put('/admin/tags/{id}', [AdminController::class, 'updateTag'])->name('admin.editTag');
+    Route::delete('/admin/tags/{id}', [AdminController::class, 'deleteTag'])->name('admin.deleteTag');
+    
+    // Likes
     Route::get('/admin/likes', [AdminController::class, 'getLikes'])->name('admin.likes');
 });
 
