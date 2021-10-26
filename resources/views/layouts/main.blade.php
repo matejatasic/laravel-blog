@@ -68,6 +68,7 @@
 
         @yield('content')
 
+         <!-- script if logged in -->
         @if (Auth::check())
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <script>
@@ -117,5 +118,69 @@
                 }); 
             </script>
         @endif
+        <!-- !script if logged in -->
+
+        @yield('scripts')
+
+        <!-- footer -->
+        <footer id="footer" class="bg-dark">
+            <div id="footer-links">
+                <div id="pages">
+                    <h3>Pages</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ route('pages.home') }}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('posts.index') }}">Blog</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('pages.about') }}">About</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('pages.contact') }}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="find-us">
+                    <h3>Find us</h3>
+                    <ul>
+                        <li>
+                            <a href="#">What we do</a>
+                        </li>
+                        <li>
+                            <a href="#">Address</a>
+                        </li>
+                        <li>
+                            <a href="#">Phone</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="latest-posts">
+                    <h3>Features</h3>
+                    <ul>
+                        <li>
+                            <a href="#">Articles</a>
+                        </li>
+                        <li>
+                            <a href="#">Collections</a>
+                        </li>
+                        <li>
+                            <a href="#">Concepts</a>
+                        </li>
+                        <li>
+                            <a href="#">Tips & Advice</a>
+                        </li>    
+                    </ul>
+                </div>
+            </div>
+            <p>
+                Copyright 2021 Mateja Tasic. All Rights Reserved
+            </p>
+        </footer>
+        <!-- !footer -->
     </body>
 </html>
