@@ -18,7 +18,8 @@ body {
     color: #333;
 }
 
-.navbar {
+// Navbar
+#navbar {
     width: 100%;
     position: fixed;
     font-family: 'Lato';
@@ -109,20 +110,65 @@ body {
     }
 }
 
-.background-image {
+// Footer 
+#footer {
+    width: 100%;
+    height: 40vh;
+    bottom: 0;
+    font-family: 'Lato';
+    border-top: solid 1px $primary-color;
+
+    #footer-links {
+        display: flex;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+
+        h3 {
+            color: $light-color;     
+        }
+    
+        ul li {
+            list-style: none;
+            margin: auto 0.5rem;
+    
+            a {
+                color: $light-color;
+                text-decoration: none;
+                font-size: 1.2rem;
+    
+                &:hover {
+                    color: darken($light-color, 20%);
+                } 
+            }
+        }
+    }
+
+    p {
+        text-align: center;
+        color: $light-color;
+        font-size: 1.2rem;   
+    }
+}
+
+// Welcome
+#header-image {
     position: relative;
     background-image: url('/img/background.jpg');
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
-    height: 600px;
+    height: 100vh;
 
     .block-text {
         position: absolute;
+        left: 50%;
         top: 50%;
-        left: 25%;
-        color: darken($primary-color, 15%);
+        width: 70%;
+        transform: translate(-50%, -50%);
+        color: darken($primary-color, 10%);
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -130,9 +176,70 @@ body {
 
         .heading {
             font-size: 5rem;   
+        }
+        p {
+            font-size: 2rem;
         }  
     }
+}
 
+#skills-div {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    background-color: darken($primary-color, 10%);
+    color: white;
+
+    #skills {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    span {
+        font-size: 2rem;
+    }
+}
+
+#latest-post {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 1.5rem;
+    }
+
+    #post {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    display: flex;
+
+        div img {
+            height: 20rem;
+            width: 30rem;
+        }
+    
+        div a {
+            width: 105px;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+    }
 }
 
 // About
@@ -391,6 +498,7 @@ body {
     }
 }
 
+// Modal
 .modal {
     display: none;
     position: fixed;
