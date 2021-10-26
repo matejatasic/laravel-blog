@@ -4,6 +4,10 @@
     #menu-wrapper {
         flex-direction: column;
 
+        .left-nav {
+            margin-left: 0 !important;
+        }
+
         .right-nav {
             margin-top: 1rem;
             text-align: center;
@@ -54,6 +58,29 @@
             a {
                 margin: auto;
             }
+        }
+    }
+
+    .container {
+        margin-top: 10rem;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    //About & Contact
+    #about,
+    #contact {
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+        p {
+            font-size: 1.2rem !important;
         }
     }
 }
