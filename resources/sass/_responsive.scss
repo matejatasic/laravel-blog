@@ -1,0 +1,59 @@
+// Mobile
+@media only screen and (max-width: 600px) {
+    // Navbar
+    #menu-wrapper {
+        flex-direction: column;
+
+        .right-nav {
+            margin-top: 1rem;
+            text-align: center;
+
+            #dropdown {
+                width: 5rem !important;
+            }
+        }
+    }
+
+    // Home page
+    #header-image {
+        .block-text {
+            top: 60% !important;
+            .heading {
+                font-size: 3.5rem !important;   
+            }
+            p {
+                font-size: 1.5rem !important;
+            }  
+        }
+    }
+
+    #latest-post {
+        #post {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+
+            div img {
+                margin: 0 22%;
+                height: 7rem !important;
+                width: 10rem !important;
+            }
+
+            h2 {
+                font-size: 1.3rem !important;
+            }
+            
+            div span {
+                display: none;
+            }
+
+            p {
+                font-size: 1rem !important;
+            }
+
+            a {
+                margin: auto;
+            }
+        }
+    }
+}
