@@ -14,7 +14,7 @@
         <div>
             <button class="btn btn-success create mb-3" id="createModalBtn">Create</button>
         </div>
-        <table id="posts-table" class="mb-2">
+        <table id="table" class="mb-2">
             <thead>
                 <tr>
                     <th>ID</th>
