@@ -11,13 +11,12 @@
                 {{ Session::get('success') }}
             </div>
         @endif
-        <table id="posts-table" class="mb-2">
+        <table id="table" class="mb-2">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Text</th>
                     <th>Approved</th>
                     <th>Actions</th>
                 </tr>
@@ -28,7 +27,6 @@
                         <td>{{ $post->id }}</td>
                         <td><img src="{{ $post->img_path }}" alt="img_thumbnail"></td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ strlen($post->body) > 150 ? substr($post->body, 0, 150) . '...' : $post->body }}</td>
                         <td>{{ $post->approved === 'approved' ? 'Approved' : 'Unapproved'}}</td>
                         <td>
                             <button class="viewBtn btn btn-primary" id="{{ $post->id }}">View</button>
