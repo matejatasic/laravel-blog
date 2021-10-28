@@ -11,7 +11,7 @@
                 {{ Session::get('success') }}
             </div>
         @endif
-        <table id="posts-table" class="mb-2">
+        <table id="table" class="mb-2">
             <thead>
                 <tr>
                     <th>ID</th>
