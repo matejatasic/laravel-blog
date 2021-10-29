@@ -69,7 +69,7 @@
     }
 
     .container {
-        margin-top: 10rem;
+        margin-top: 12rem;
     }
 
     p {
@@ -232,7 +232,8 @@
                 }
 
                 button {
-                    width: 5rem !important;
+                    width: 4rem !important;
+                    font-size: 0.8rem !important;
                     height: 2rem !important;
                     text-align: center;    
                 }
@@ -246,6 +247,138 @@
             .comment-buttons {
                 padding-top: 5rem !important;
             }
+        }
+    }
+}
+
+// Small and medium devices
+@media only screen and (min-width: 600px) and (max-width: 970px) {
+    // Navbar
+    #navbar {
+        padding-left: 0 !important;
+
+        .navbar-brand {
+            margin: auto 1rem !important;
+        }
+    }
+    #menu-wrapper {
+        .left-nav {
+            margin-left: 0 !important;
+        }
+        .right-nav {
+            width: 30% !important;
+            margin-left: 4rem;
+            padding-right: 3rem;
+        }
+    }
+
+    // Home page
+    .block-text {
+        top: 60% !important;
+        .heading {
+            font-size: 4rem !important;   
+        }
+    }
+
+    #latest-post {
+        #post {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+
+            div img {
+                margin: 0 22% !important;
+                height: 10rem !important;
+                width: 13rem !important;
+            }
+
+            div:last-child {
+                padding-bottom: 1rem !important;
+            }
+
+            h2 {
+                font-size: 1.4rem !important;
+            }
+            
+            div span {
+                display: none;
+            }
+
+            p {
+                font-size: 1.2rem !important;
+            }
+
+            a {
+                margin: auto;
+            }
+        }
+    }
+
+    .container {
+        padding: 0 !important;
+    }
+
+    // Blog
+    #blog {
+        .blog-post {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+
+            div img {
+                margin: 0 22%;
+                height: 12rem !important;
+                width: 15rem !important;
+            }
+
+            .author {
+                text-align: left;
+                margin-top: 10px;
+            }
+
+            h2 {
+                font-size: 1.5rem !important;
+            }
+
+            p {
+                font-size: 1.2rem !important;
+            }
+
+            a {
+                margin: auto;
+            }    
+        }
+    }
+
+    .create {
+        margin-top: 0.5rem;
+        margin-left: 75% !important;
+    }
+
+    .form,
+    .login-form,
+    .register-form,
+    #editForm {
+        width: 100% !important;
+    }
+
+    // Admin
+    #admin-sidebar{
+        width: 6.5rem !important;
+        a {
+            padding: 1rem 0.5rem !important;
+            font-size: 20px !important;
+        }
+    }
+
+    #table {
+        img {
+            width: 50px !important;
+        }
+
+        button {
+            width: 4rem !important;
+            font-size: 0.8rem !important;
         }
     }
 }
