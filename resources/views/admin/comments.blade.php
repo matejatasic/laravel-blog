@@ -28,11 +28,11 @@
                     <tr>
                         <td>{{ $comment->id }}</td>
                         <td>{{ $comment->title }}</td>
-                        <td>{{ strlen($comment->comment) > 150 ? substr($comment->comment, 0, 150) . '...' : $comment->comment }}</td>
+                        <td>{{ strlen($comment->comment) > 50 ? substr($comment->comment, 0, 50) . '...' : $comment->comment }}</td>
                         <td>{{ $comment->user->name }}</td>
                         <td>{{ $comment->post->title }}</td>
                         <td>Approved</td>
-                        <td>
+                        <td class="comment-buttons">
                             <button class="btn btn-primary viewBtn" id="{{ $comment->id }}">Edit</button>
                             @if ($comment->approved === 'unapproved')
                                 <button class="btn btn-success approveModalBtn" id="{{ $comment->id }}">Approve</button>
