@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @if (Auth::check())
-            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+            <script src="https://kit.fontawesome.com/f9d2d5cb9c.js" crossorigin="anonymous"></script>
         @endif
     </head>
     <body>
@@ -123,66 +123,5 @@
         </script>
 
         @yield('scripts')
-        
-        <!-- footer -->
-        <footer id="footer" class="bg-dark">
-            <div id="footer-links">
-                <div id="pages">
-                    <h3>Pages</h3>
-                    <ul>
-                        <li>
-                            <a href="{{ route('pages.home') }}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('posts.index') }}">Blog</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('pages.about') }}">About</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('pages.contact') }}">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div id="find-us">
-                    <h3>Find us</h3>
-                    <ul>
-                        <li>
-                            <a href="#">What we do</a>
-                        </li>
-                        <li>
-                            <a href="#">Address</a>
-                        </li>
-                        <li>
-                            <a href="#">Phone</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div id="latest-posts">
-                    <h3>Features</h3>
-                    <ul>
-                        <li>
-                            <a href="#">Articles</a>
-                        </li>
-                        <li>
-                            <a href="#">Collections</a>
-                        </li>
-                        <li>
-                            <a href="#">Concepts</a>
-                        </li>
-                        <li>
-                            <a href="#">Tips & Advice</a>
-                        </li>    
-                    </ul>
-                </div>
-            </div>
-            <p>
-                Copyright 2021 Mateja Tasic. All Rights Reserved
-            </p>
-        </footer>
-        <!-- !footer -->
     </body>
 </html>
