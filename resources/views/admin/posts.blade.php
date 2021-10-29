@@ -17,6 +17,7 @@
                     <th>ID</th>
                     <th>Image</th>
                     <th>Name</th>
+                    <th>Text</th>
                     <th>Approved</th>
                     <th>Actions</th>
                 </tr>
@@ -27,8 +28,9 @@
                         <td>{{ $post->id }}</td>
                         <td><img src="{{ $post->img_path }}" alt="img_thumbnail"></td>
                         <td>{{ $post->title }}</td>
+                        <td>{{ strlen($post->body) > 50 ? substr($post->body, 0, 50) . '...' : $post->body }}</td>
                         <td>{{ $post->approved === 'approved' ? 'Approved' : 'Unapproved'}}</td>
-                        <td>
+                        <td class="post-buttons">
                             <button class="viewBtn btn btn-primary" id="{{ $post->id }}">View</button>
                             @if ($post->approved === 'unapproved')
                                 <button class="approveModalBtn  btn btn-success" id="{{ $post->id }}">Approve</button>
