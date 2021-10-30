@@ -615,3 +615,41 @@ body {
         color: $danger-color;
     }
 }
+
+// Email 
+#email-card {
+    width: 60%;
+    border: 1px solid rgb(102, 102, 102);
+    margin: 2rem auto;
+    font-family: 'Oswald';
+
+    #email-heading {
+        text-align: center;
+        padding: 0.5rem auto;
+        background-color: rgba(128, 128, 128, 0.473);
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+
+    #email-body {
+        padding: 0.5rem 2rem;
+        
+        p:first-child {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            margin: 0.5rem auto;
+            width: 10rem;
+        }
+
+        #email-footer {
+            p {
+                margin-bottom: 0;
+            }
+
+            margin-top: 2rem;
+        }
+    }
+}
