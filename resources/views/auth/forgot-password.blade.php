@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="form">
+        <div class="form-password">
             <div class="form-heading">
                 Forgot Password
             </div>
@@ -12,8 +12,10 @@
                     <label>Email</label>
                     <input type="text" name="email">
                 </div>
-
-                <input type="submit" class="btn btn-success mx-2" value="Reset">
+                <div>
+                    <input type="submit" class="btn btn-success mx-2" value="Reset">
+                    <a href="{{ route('getLogin') }}">Login</a>
+                </div>
             </form>
         </div>
     </div>
