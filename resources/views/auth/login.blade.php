@@ -32,7 +32,7 @@
                 </div>
                 <div>
                     <input type="submit" class="btn btn-success mx-2" value="Login">
-                    <a href="#">Forgot your password?</a>
+                    <a href="{{ route('forgotPassword') }}">Forgot your password?</a>
                 </div>
             </form>
         </div>
