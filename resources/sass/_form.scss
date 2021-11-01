@@ -1,6 +1,7 @@
 .form,
 .login-form,
-.register-form {
+.register-form,
+.form-password {
     width: 80%;
     margin: 2rem auto;
 
@@ -22,7 +23,7 @@
     }
 
     input[type='submit'] {
-        font: 'Oswald';
+        font-family: 'Oswald';
         margin: 0 auto;
     }
 
@@ -58,7 +59,7 @@
       }
 }
 
-.login-form, .register-form {
+.login-form, .register-form, .form-password {
     background: darken($light-color, 5%);
     border: 2px solid $black-color;
     
