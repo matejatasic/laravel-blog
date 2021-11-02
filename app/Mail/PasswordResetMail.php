@@ -11,14 +11,17 @@ class PasswordResetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $name;
+    public $token;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name, $token)
     {
         $this->name = $name;
+        $this->token = $token;
     }
 
     /**
@@ -28,11 +31,14 @@ class PasswordResetMail extends Mailable
      */
     public function build()
     {
+        $user = [];
+        $user['name'] = $this->name;
+        $user['token'] = $this->token;
 
         return $this->from('mail@example.com', 'Laravel Blog')
             ->subject('Password Reset')
             ->view('mails.reset-password', [
-                'user' => $this->name,
+                'user' => $user,
             ]);
     }
 }
