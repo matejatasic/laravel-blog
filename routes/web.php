@@ -30,6 +30,10 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
     Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
     Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
+    Route::get('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+    Route::post('/forgot-password', [AuthController::class, 'sendEmail'])->name('sendEmail');
+    Route::get('/change-password/{token}', [AuthController::class, 'changePassword'])->name('changePassword');
+    Route::put('/change-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
 });
 Route::get('/logout', [AuthController::class, 'postLogout'])->middleware('auth')->name('logout');
 
