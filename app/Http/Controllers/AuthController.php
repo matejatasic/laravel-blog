@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\PasswordResetMail;
 use App\Models\User;
 use Session;
 
@@ -82,5 +86,69 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function forgotPassword() {
+        return view('auth.forgot-password');
+    }
+
+    public function sendEmail(Request $request) {
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+        $emailErrors = [];
+        $user = User::where('email', $request->email)->first();
+        
+        if(!$user->exists()) {
+            $emailErrors['no_user'] = 'There are no accounts associated with this email address';            
+            return redirect()->route('forgotPassword')->withErrors($emailErrors);
+        }
+
+        $token = Str::random(60);
+        $user->token = $token;
+        $user->save();
+
+        Mail::to($request->email)->send(new PasswordResetMail($user->name, $token));
+        
+        if(count(Mail::failures()) > 0) {
+            $emailErrors['not_sent'] = 'Failed to send the email!';
+            return redirect()->route('forgotPassword')->withErrors($emailErrors);   
+        }
+
+        Session::flash('success', 'An email has been sent, please check your inbox!');
+        return redirect()->route('forgotPassword');
+    }
+
+    public function changePassword($token) {
+        $user = User::where('token', $token)->first();
+        if (!$user->exists()) {
+            $error['expired_token'] = 'Your token has expired!';
+            return redirect()->route('forgotPassword')->withErrors($error);
+        }
+        
+        return view('auth.change-password', [
+            'email' => $user->email,
+        ]);
+    }
+
+    public function updatePassword(Request $request) {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!$user->exists()) {
+            $error['invalid_email'] = 'The email is not valid!!';
+            return redirect()->route('forgotPassword')->withErrors($error);    
+        }
+
+        $user->token = '';
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        Session::flash('success', 'You have successfully changed your password!');
+        return redirect()->route('getLogin');
     }
 }
