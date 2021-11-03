@@ -271,13 +271,15 @@
 
 .form,
 .login-form,
-.register-form {
+.register-form,
+.form-password {
   width: 80%;
   margin: 2rem auto;
 }
 .form-group,
 .login-form-group,
-.register-form-group {
+.register-form-group,
+.form-password-group {
   margin: 1.2rem 0;
 }
 .form input[type=text],
@@ -294,7 +296,12 @@
 .register-form input[type=email],
 .register-form input[type=password],
 .register-form textarea,
-.register-form select {
+.register-form select,
+.form-password input[type=text],
+.form-password input[type=email],
+.form-password input[type=password],
+.form-password textarea,
+.form-password select {
   display: block;
   border: 2px solid #3a3333;
   width: 100%;
@@ -304,24 +311,28 @@
 }
 .form input[type=submit],
 .login-form input[type=submit],
-.register-form input[type=submit] {
+.register-form input[type=submit],
+.form-password input[type=submit] {
   font-family: "Oswald";
   margin: 0 auto;
 }
 .form input[type=file],
 .login-form input[type=file],
-.register-form input[type=file] {
+.register-form input[type=file],
+.form-password input[type=file] {
   padding: 0.8rem;
   font-size: 1.2rem;
 }
 .form label,
 .login-form label,
-.register-form label {
+.register-form label,
+.form-password label {
   font-size: 1.2rem;
 }
 .form .form-heading,
 .login-form .form-heading,
-.register-form .form-heading {
+.register-form .form-heading,
+.form-password .form-heading {
   width: 100%;
   border-bottom: 2px solid #3a3333;
   background: #e0d9d9;
@@ -330,45 +341,55 @@
 }
 .form .select2-selection__rendered,
 .login-form .select2-selection__rendered,
-.register-form .select2-selection__rendered {
+.register-form .select2-selection__rendered,
+.form-password .select2-selection__rendered {
   line-height: 31px !important;
 }
 .form .select2-container .select2-selection--single,
 .login-form .select2-container .select2-selection--single,
-.register-form .select2-container .select2-selection--single {
+.register-form .select2-container .select2-selection--single,
+.form-password .select2-container .select2-selection--single {
   height: 35px !important;
 }
 .form .select2-selection__arrow,
 .login-form .select2-selection__arrow,
-.register-form .select2-selection__arrow {
+.register-form .select2-selection__arrow,
+.form-password .select2-selection__arrow {
   height: 34px !important;
 }
 .form #dropList1 + .select2-container--default .select2-selection--multiple,
 .login-form #dropList1 + .select2-container--default .select2-selection--multiple,
-.register-form #dropList1 + .select2-container--default .select2-selection--multiple {
+.register-form #dropList1 + .select2-container--default .select2-selection--multiple,
+.form-password #dropList1 + .select2-container--default .select2-selection--multiple {
   height: auto;
 }
 
-.login-form, .register-form {
+.login-form, .register-form, .form-password {
   background: #d5cbcb;
   border: 2px solid #3a3333;
 }
-.login-form form, .register-form form {
+.login-form form, .register-form form, .form-password form {
   padding: 1rem;
 }
-.login-form div:last-child, .register-form div:last-child {
+.login-form div:last-child, .register-form div:last-child, .form-password div:last-child {
   display: flex;
   justify-content: center;
   font-size: 1.2rem;
 }
-.login-form div:last-child input, .register-form div:last-child input {
+.login-form div:last-child input, .register-form div:last-child input, .form-password div:last-child input {
   margin: 0;
 }
-.login-form div:last-child a, .register-form div:last-child a {
+.login-form div:last-child a, .register-form div:last-child a, .form-password div:last-child a {
   text-decoration: none;
 }
-.login-form div:last-child a:hover, .register-form div:last-child a:hover {
+.login-form div:last-child a:hover, .register-form div:last-child a:hover, .form-password div:last-child a:hover {
   color: #cc3737;
+}
+
+.form-password input[type=submit] {
+  font-family: "Oswald";
+  width: 10rem;
+  margin: 0 auto;
 }
 
 .delete-form {
