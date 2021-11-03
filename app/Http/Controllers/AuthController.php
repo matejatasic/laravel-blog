@@ -30,6 +30,12 @@ class AuthController extends Controller
         
         if(Auth::attempt($credentials)) {
             $user = User::where('email', $request->email)->first();
+            
+            if($user->status === 'banned') {
+                $banError = [];
+                $banError['ban'] = 'You can\'t login, you are currently banned!';
+                return redirect()->route('getLogin')->withErrors($banError);
+            }
 
             Session::flash('success', 'You have successfully logged in!');
 
